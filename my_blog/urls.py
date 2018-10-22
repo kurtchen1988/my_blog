@@ -22,5 +22,10 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('blog/', include('blog.urls')),
     path('comment/', include('commment.urls')),
-    
+    path('likes/', include('likes.urls')),
+    path('user/', include('user.urls')),
+
 ]
+
+# I don't know what it is for. Although I can tell it's commbining the media path:
+urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
