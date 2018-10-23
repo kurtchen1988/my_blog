@@ -16,4 +16,10 @@ def get_blog_list_common_data(request, blogs_all_list):
 	# 获取当前页码前后2页的页码范围
 	page_range = list(range(max(current_page_num - 2, 1), current_page_num)) +\
 	list(range(current_page_num, min(current_page_num+2, paginator.num_pages)+1))
-	
+	# 加上省略页码标记
+	if page_range[0] - 1 >=2:
+		page_range.insert(0, '...')
+	if paginator.num_pages - page_range[-1] >= 2:
+		page_range.append('...')
+
+	# 加上首页和末页
