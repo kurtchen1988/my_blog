@@ -69,7 +69,9 @@
 							<!--验证是否为员工或者超级账户。这里需要查看文档深入看一下账户管理-->
 								<li><a href="{% url 'admin:index' %}"></a></li>
 							{% endif %}
-								<!--这里为什么这么用？-->
+								<!--这里为什么这么用？
+								https://docs.djangoproject.com/en/2.1/topics/http/urls/#topics-http-reversing-url-namespaces
+								-->
 								<li><a href="{% url 'logout' %}?from={{ request.get_full_path }}">退出</a></li>
 						</ul>
 					</li>
@@ -80,7 +82,7 @@
 	</div>
 	
 	{% block content %}{% endblock %}
-	{# 主内容}
+	{# 主内容 #}
 	
 	<!-- Modal -->
 
@@ -130,5 +132,6 @@
 		});
 	</script>
 	{% block script_extends %}{% endblock %}
+	<!--脚本块-->
 </body>
 </html>

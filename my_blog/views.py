@@ -10,7 +10,7 @@ from blog.models import blog
 def get_7_days_hot_blogs():
 	today = timezone.now().data()
 	date = today - datatime.timedelta(days = 7)
-	pass
+	blogs = Blog.objects.filter(read_details__date__lt=today)
 
 def home():
 	pass
