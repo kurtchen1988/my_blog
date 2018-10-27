@@ -60,13 +60,14 @@ def blogs_with_type(request, blog_type_pk):
 	return render(request, 'blog/blogs_with_date.html', context)
 
 def blog_with_date(request, year, month):
+	'''拿到某个日期的博客列表'''
 	blogs_all_list = Blog.objects.filter(created_time__year=year, created_time__month=month) # 横线写法
 	context = get_blog_list_common_data(request, blog_all_list)
 	context['blogs_with_date'] = '%s年%s月'%(year, month)
 	return render(request, 'blog/blogs_with_date.html', context)
 
 def blog_detail(request, blog_pk):
-	''''''
+	'''显示详细博客内容'''
 	blog = get_object_or_404(Blog, pk=blog_pk)
 	read_cookie_key = read_statistics_once_read(request, blog)
 
