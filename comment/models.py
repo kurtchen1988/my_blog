@@ -34,7 +34,7 @@ class Comment(models.Model):
 	content_object = GenericForeignKey('content_type', 'object_id')
 
 	text = models.TextField()
-	comment_time = models.DateTimeFiled(auto_now_add=True)
+	comment_time = models.DateTimeField(auto_now_add=True)
 	user = models.ForeignKey(User, related_name="comments", on_delete=models.CASCADE)
 
 	root = models.ForeignKey('self', related_name='root_comment', null=True, on_delete=models.CASCADE)

@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from .models import Profile
 # Register your models here.
 
-class ClassName(admin.StackInline):
+class ProfileInline(admin.StackedInline):
 	"""docstring for ClassName"""
 	model = Profile
 	can_delete = False

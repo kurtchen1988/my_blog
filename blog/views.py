@@ -59,7 +59,7 @@ def blogs_with_type(request, blog_type_pk):
 	context['blog_type'] = blog_type
 	return render(request, 'blog/blogs_with_date.html', context)
 
-def blog_with_date(request, year, month):
+def blogs_with_date(request, year, month):
 	'''拿到某个日期的博客列表'''
 	blogs_all_list = Blog.objects.filter(created_time__year=year, created_time__month=month) # 横线写法
 	context = get_blog_list_common_data(request, blog_all_list)

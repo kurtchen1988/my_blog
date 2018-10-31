@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.contenttypes.models import ContentType
+from django.contrib.contenttypes.models import ContentType
 from django.http import JsonResponse
 from django.db.models import ObjectDoesNotExist
 from .models import LikeCount, LikeRecord
