@@ -51,7 +51,7 @@ class RegForm(forms.Form):
 		widget=forms.PasswordInput(attrs={'class':'form-control', 'placeholder':'请输入密码'})
 		)
 	password_again = forms.CharField(
-		label = '再输入一次密码'
+		label = '再输入一次密码',
 		min_length = 6,
 		widget=forms.PasswordInput(attrs={'class':'form-control', 'placeholder':'再输入一次密码'})
 		)
@@ -116,7 +116,7 @@ class ChangeNicknameForm(forms.Form):
 			raise forms.ValidationError("新的昵称不能为空")
 		return nickname_new
 
-class BindEmailForm(foms.Form):
+class BindEmailForm(forms.Form):
 	email = forms.EmailField(
 		label='邮箱',
 		widget=forms.EmailInput(
@@ -169,7 +169,7 @@ class BindEmailForm(foms.Form):
 
 class ChangePasswordForm(forms.Form):
 	old_password = forms.CharField(
-		label = '旧的密码'
+		label = '旧的密码',
 		widget=forms.PasswordInput(
 			attrs={'class':'form-control', 'placeholder':'请输入旧的密码'}
 			)
@@ -201,4 +201,54 @@ class ChangePasswordForm(forms.Form):
 
 	def clean_old_password(self):
 		# 验证旧的密码是否正确
-		old_password = self.cleaned_data
+		old_password = self.cleaned_data.get('new_password', '')
+		if not self.user.check_password(old_password):
+			raise forms.ValidationError('旧的密码错误')
+		return old_password
+
+class ForgotPasswordForm(forms.Form):
+	email = forms.EmailField(
+		label='邮箱',
+		widget=forms.EmailInput(
+			attrs={'class':'form-control','placeholder':'请输入绑定过的邮箱'}
+			)
+		)
+
+
+	verification_code = forms.CharField(
+		label = '验证码',
+		required = False,
+		widget = forms.TextInput(
+			attrs={'class':'form-control','placeholder':'点击“发送验证码”发送到邮箱'}
+			)
+		)
+
+	new_password = forms.CharField(
+		label='新的密码',
+		widget = forms.PasswordInput(
+			attrs={'class':'form-control','placeholder':'请输入新的密码'}
+			)
+		)
+
+	def __init__(self, *args, **kwargs):
+		if 'request' in kwargs:
+			self.request=kwargs.pop('request')
+		super(ForgotPasswordForm, self).__init__(*args, **kwargs)
+
+	def clean_email(self):
+		email = self.cleaned_data['email'].strip()
+		if not User.objects.filter():
+			raise forms.ValidationError('邮箱不存在')
+		return email
+
+	def clean_verification_code(self):
+		verification_code = self.cleaned_data.get('verification_code','').strip()
+		if verification_code == '':
+			raise forms.ValidationError('验证码不能为空')
+
+		# 判断验证码
+		code = self.request.session.get('forgot_password_code', '')
+		verification_code = self.cleaned_data.get('verification_code','')
+		if not (code != '' and code == verification_code):
+			raise forms.ValidationError('验证码不正确')
+		return verification_code

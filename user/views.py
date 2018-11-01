@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 from django.urls import reverse
 from django.http import JsonResponse
 from django.core.mail import send_mail
-from .forms import LoginForm, RegForm, ChangeNicknameForm, BindEmailForm, ChangPasswordForm, ForgotPasswordForm
+from .forms import LoginForm, RegForm, ChangeNicknameForm, BindEmailForm, ChangePasswordForm, ForgotPasswordForm
 from .models import Profile
 
 # Create your views here.

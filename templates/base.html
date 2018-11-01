@@ -8,10 +8,10 @@
 	<meta name="viewport" content="width=divice-width, initial-scale=1">
 	<title>{% block title %}{% endblock %}</title>
 	<!--用名称为title的块包裹标题-->
-	<link rel="stylesheet" type="text/css" href="{% static 'base.css' %}">
-	<link rel="stylesheet" type="text/css" href="{% static 'bootstrap-3.3.7/css/bootstrap.min.css' %}">
-	<script type="text/javascript" href="{% static 'jquery-1.12.4.min.js' %}"></script>
-	<script type="text/javascript" href="{% static 'bootstrap-3.3.7/js/bootstrap.min.js' %"></script>
+	<link rel="stylesheet" href="{% static 'base.css' %}">
+	<link rel="stylesheet" href="{% static 'bootstrap-3.3.7/css/bootstrap.min.css' %}">
+	<script type="text/javascript" src="{% static 'jquery-1.12.4.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'bootstrap-3.3.7/js/bootstrap.min.js' %"></script>
 	<!--依次导入所有的css和js包，这里一定要注意把jquery先导入再导入bootstrap，因为bootstrap依赖jquery-->
 	{% block header_extends %}{% endblock %}
 </head>

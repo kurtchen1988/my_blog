@@ -7,12 +7,12 @@
 {% endblock %}
 
 {% block header_extends %}
-	<link rel="stylesheet" type="text/css" href="{% static 'home.css' %}">
+	<link rel="stylesheet" href="{% static 'home.css' %}">
 	<!--导入css-->
 	<script src="http://cdn.hcharts.cn/highcharts/highcharts.js"></script>
 {% endblock %}
 
-{% bloack nav_home_active %}active{% endblock %}
+{% block nav_home_active %}active{% endblock %}
 
 {% block content %}
 	<h3 class="home-content">欢迎访问我的网站，随便看</h3>
@@ -71,3 +71,4 @@
 
 		var chart = Highcharts.chart('container', options);
 	</script>
+{% endblock %}
