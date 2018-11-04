@@ -17,8 +17,8 @@
 								{% if not field.is_hidden %}
 									<label for="{{ field.id_for_label }}">{{ field.label }}</label>
 								{% endif %}
-								{% field %}
-								<p class="text-danger">{{ field.non_field_errors }}</p>
+								{{ field }}
+								<p class="text-danger">{{ field.error.as_text }}</p>
 							{% endfor %}
 							<span id="tip" class="text-danger">{{ form.non_field_errors }}</span>
 							<div class="clearfix"></div>
@@ -35,3 +35,4 @@
 			</div>
 		</div>
 	</div>
+{% endblock %}

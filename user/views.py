@@ -154,7 +154,7 @@ def change_password(request):
 			auth.logout(request)
 			return redirect(redirect_to)
 	else:
-		form = ChangPasswordForm()
+		form = ChangePasswordForm()
 
 	context = {}
 	context['page_title'] = '修改密码'

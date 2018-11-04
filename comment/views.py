@@ -8,7 +8,7 @@ from .forms import CommentForm
 # Create your views here.
 def update_comment(request):
 	referer = request.META.get('HTTP_REFERER', reverse('home'))
-	commnet_form = CommentForm(request.POST, user=request.user)
+	comment_form = CommentForm(request.POST, user=request.user)
 	data = {}
 
 	if comment_form.is_valid():

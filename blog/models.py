@@ -10,7 +10,7 @@ class BlogType(models.Model):
 	type_name = models.CharField(max_length=15)
 
 	def __str__(self):
-		return self.auth.email
+		return self.type_name
 
 class Blog(models.Model, ReadNumExpandMethod):
 	'''博客内容：标题，类型（外键，与博客类型相连），博客内容，作者，？（统计里的ReadDetail），创建时间，最后修改时间'''
@@ -30,9 +30,9 @@ class Blog(models.Model, ReadNumExpandMethod):
 		'''返回email'''
 		return self.author.email
 
-	def __str__(self, arg):
+	def __str__(self):
 		'''重写显示内容，展示博客标题'''
-		return "<Blog: %s>"%self.title
+		return "<Blog: %s>" % self.title
 		
 	class Meta:
 		'''Meta类，复写排序顺序'''

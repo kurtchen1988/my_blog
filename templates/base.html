@@ -5,13 +5,13 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=divice-width, initial-scale=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>{% block title %}{% endblock %}</title>
 	<!--用名称为title的块包裹标题-->
 	<link rel="stylesheet" href="{% static 'base.css' %}">
 	<link rel="stylesheet" href="{% static 'bootstrap-3.3.7/css/bootstrap.min.css' %}">
 	<script type="text/javascript" src="{% static 'jquery-1.12.4.min.js' %}"></script>
-	<script type="text/javascript" src="{% static 'bootstrap-3.3.7/js/bootstrap.min.js' %"></script>
+	<script type="text/javascript" src="{% static 'bootstrap-3.3.7/js/bootstrap.min.js' %}"></script>
 	<!--依次导入所有的css和js包，这里一定要注意把jquery先导入再导入bootstrap，因为bootstrap依赖jquery-->
 	{% block header_extends %}{% endblock %}
 </head>
@@ -50,7 +50,7 @@
 					{% else %}
 					<!--用户登陆状态-->
 					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" role="button">
+						<a href="#" class="dropdown-toggle" data-toggle = "dropdown" role="button">
 							{% if user.has_nickname %}
 								{{ user.username}}({{ user.get_nickname }})
 							{% else %}
@@ -67,7 +67,7 @@
 							</li>
 							{% if user.is_staff or user.is_superuser%}
 							<!--验证是否为员工或者超级账户。这里需要查看文档深入看一下账户管理-->
-								<li><a href="{% url 'admin:index' %}"></a></li>
+								<li><a href="{% url 'admin:index' %}">后台管理</a></li>
 							{% endif %}
 								<!--这里为什么这么用？
 								https://docs.djangoproject.com/en/2.1/topics/http/urls/#topics-http-reversing-url-namespaces
