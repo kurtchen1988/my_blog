@@ -201,7 +201,7 @@ class ChangePasswordForm(forms.Form):
 
 	def clean_old_password(self):
 		# 验证旧的密码是否正确
-		old_password = self.cleaned_data.get('new_password', '')
+		old_password = self.cleaned_data.get('old_password', '')
 		if not self.user.check_password(old_password):
 			raise forms.ValidationError('旧的密码错误')
 		return old_password
